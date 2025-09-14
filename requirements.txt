@@ -1,0 +1,13 @@
+# Markdown转Word转换器依赖包 (Pandoc方案)
+# 注意: 还需要单独安装pandoc系统依赖
+# Windows: https://pandoc.org/installing.html
+
+# 核心依赖
+pypandoc>=1.11
+
+# 可选依赖 (用于增强功能)
+# 语法高亮支持
+Pygments>=2.13.0
+
+# 图片处理
+Pillow>=9.0.0
