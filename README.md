@@ -28,7 +28,7 @@
 单文件转换:
 ```bash
 python convert.py input.md
-python convert.py input.md -o output.docx
+python convert.py input.md output.docx
 ```
 
 批量转换:

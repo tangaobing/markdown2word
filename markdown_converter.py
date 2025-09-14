@@ -59,13 +59,13 @@ class MarkdownConverter:
             try:
                 if path == "pandoc":
                     result = subprocess.run(["pandoc", "--version"], 
-                                          capture_output=True, text=True, timeout=10)
+                                          capture_output=True, text=True, timeout=10, encoding='utf-8')
                     if result.returncode == 0:
                         return "pandoc"
                 else:
                     if os.path.exists(path):
                         result = subprocess.run([path, "--version"], 
-                                              capture_output=True, text=True, timeout=10)
+                                              capture_output=True, text=True, timeout=10, encoding='utf-8')
                         if result.returncode == 0:
                             return path
             except (subprocess.TimeoutExpired, subprocess.CalledProcessError, FileNotFoundError):
