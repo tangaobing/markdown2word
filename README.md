@@ -1,43 +1,45 @@
-# Markdown转Word转换器 (Pandoc方案)
+# Markdown转Word转换器
 
-基于Pandoc + pypandoc的高质量Markdown到Word文档转换解决方案。
+将Markdown文件转换为Word文档(.docx)格式的Python工具。
 
-## 🚀 快速开始
+## 安装
 
-### 1. 安装依赖
+### 系统要求
 
+- Python 3.7+
+- Pandoc
+
+### 安装步骤
+
+1. 安装Python依赖:
+   ```bash
+   pip install pypandoc
+   ```
+
+2. 安装Pandoc:
+   - Windows: 从 https://pandoc.org/installing.html 下载安装
+   - macOS: `brew install pandoc`
+   - Linux: `sudo apt-get install pandoc`
+
+## 使用
+
+### 命令行模式
+
+单文件转换:
 ```bash
-# 安装Python依赖
-pip install -r requirements.txt
-
-# 运行依赖检查和安装脚本
-python install_dependencies.py
+python convert.py input.md
+python convert.py input.md -o output.docx
 ```
 
-### 2. 基本使用
-
-#### 命令行方式
+批量转换:
 ```bash
-# 基本转换
-python convert.py input.md output.docx
-
-# 带目录和章节编号
-python convert.py input.md output.docx --toc --number-sections
-
-# 批量转换
-python convert.py *.md --batch
+python convert.py docs/ -o output/
 ```
 
-#### Python代码方式
-```python
-from markdown_converter import MarkdownConverter
+### 交互式模式
 
-# 创建转换器
-converter = MarkdownConverter()
-
-# 转换文件
-success = converter.convert_file("input.md", "output.docx")
-print(f"转换结果: {success}")
+```bash
+python convert.py
 ```
 
 ## 📁 项目文件说明
@@ -75,18 +77,8 @@ python convert.py --batch ./docs ./output --pattern "*.markdown"
 ```python
 from markdown_converter import MarkdownConverter
 
-# 创建转换器
 converter = MarkdownConverter()
-
-# 转换文件
-success = converter.convert_file('input.md', 'output.docx')
-
-# 转换文本
-markdown_text = "# 标题\n\n这是**粗体**文本。"
-converter.convert_text(markdown_text, 'output.docx')
-
-# 批量转换
-results = converter.batch_convert('./docs', './output')
+converter.convert_file("input.md", "output.docx")
 ```
 
 ## ✨ 功能特点
@@ -236,72 +228,6 @@ python convert.py document.md final.docx --toc --number-sections
 python convert.py --batch ./markdown_docs ./word_docs
 ```
 
-## 🔧 故障排除
+## 许可证
 
-### 常见问题
-
-**Q: 提示"pandoc未安装"怎么办？**
-
-A: 有几种解决方案：
-1. 让pypandoc自动下载pandoc（推荐）
-2. 手动安装pandoc: https://pandoc.org/installing.html
-3. 使用包管理器: `winget install pandoc`
-
-**Q: 转换失败怎么办？**
-
-A: 检查以下几点：
-1. 确保pypandoc已安装: `pip install pypandoc`
-2. 检查输入文件路径是否正确
-3. 确保有文件写入权限
-4. 查看错误信息中的具体提示
-
-**Q: 如何处理中文字符？**
-
-A: 本工具已经处理了中文编码问题，确保：
-1. markdown文件使用UTF-8编码保存
-2. 文件路径不包含特殊字符
-
-### 环境要求
-
-- **操作系统**: Windows 11 (已测试)
-- **Python**: 3.7+
-- **依赖包**: pypandoc
-- **系统依赖**: Pandoc (可选，pypandoc可自动下载)
-
-## 📊 性能说明
-
-- **小文件** (<100KB): 转换时间 <1秒
-- **中等文件** (100KB-1MB): 转换时间 1-5秒
-- **大文件** (>1MB): 转换时间取决于内容复杂度
-
-## 🤝 技术支持
-
-如果遇到问题，请检查：
-
-1. **依赖安装**: 运行 `python install_dependencies.py`
-2. **文件路径**: 确保使用正确的文件路径
-3. **权限问题**: 确保有读写文件的权限
-4. **编码问题**: 确保markdown文件使用UTF-8编码
-
-## 📝 更新日志
-
-### v1.0.0 (2025-01-14)
-- ✅ 实现基于Pandoc的稳定转换
-- ✅ 支持自动pandoc路径检测
-- ✅ 统一转换器架构
-- ✅ 添加命令行工具
-- ✅ 支持批量转换
-- ✅ 完善错误处理和用户提示
-- ✅ 优化项目结构
-
----
-
-**🎉 现在就开始使用吧！**
-
-```bash
-# 快速测试
-python markdown_converter.py
-
-# 转换你的文档
-python convert.py your_document.md
-```
+本项目采用MIT许可证。
